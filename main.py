@@ -31,12 +31,9 @@ def check_price():
     price = soup.find(id="priceblock_ourprice").get_text()
     converted_price = float(price[1:-3])
 
-    print(converted_price)
-
-    if converted_price < 50:
+    if converted_price > 50:
         send_mail()
-
-    driver.quit()
+        driver.quit()
 
 
 def send_mail():
@@ -60,4 +57,6 @@ def send_mail():
     server.quit()
 
 
-check_price()
+while True:
+    check_price()
+    time.sleep(3600)
